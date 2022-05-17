@@ -1,0 +1,10 @@
+<mat-card>
+  <h2>TOTAL DE TURMAS</h2>
+  <a [routerLink]="['/class']">
+    <i class="material-icons icon">class</i>
+  </a>
+  <a (click)="createClass()">
+    <i class="material-icons icon-add">add</i>
+  </a>
+  <span>{{ classList?.length }}</span>
+</mat-card>

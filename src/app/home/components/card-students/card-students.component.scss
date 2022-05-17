@@ -1,0 +1,46 @@
+mat-card {
+  width: 450px;
+  height: 200px;
+  background-color: darkcyan;
+}
+
+h2 {
+  color: #fff;
+  margin-bottom: 80px;
+}
+
+.icon {
+  color: rgba($color: #fff, $alpha: 0.2);
+  position: absolute;
+  font-size: 100px;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+span {
+  font-size: 120px;
+  color: #fff;
+}
+
+.icon-add {
+  color: rgba($color: #fff, $alpha: 0.5);
+  position: absolute;
+  font-size: 100px;
+  bottom: 30px;
+  right: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 978px) {
+  mat-card {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  mat-card {
+    width: 320px;
+    margin-top: 20px;
+  }
+}

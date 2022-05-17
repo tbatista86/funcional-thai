@@ -1,0 +1,27 @@
+<table *ngIf="classList.length > 0; else noHaveOne" id="class">
+  <thead>
+    <th>Turmas</th>
+    <th>Ações</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of classList">
+      <td (click)="openClass(item.id)">
+        {{ convertClassNametoNumber(item.id) }}
+      </td>
+      <td>
+        <button
+          mat-icon-button
+          color="warn"
+          aria-label="Example icon button with a home icon"
+          (click)="removeClass(item.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noHaveOne>
+  <h3>Não tem turmas cadastradas</h3>
+</ng-template>

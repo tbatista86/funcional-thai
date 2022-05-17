@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+}
+
+#class tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#class tr:hover {
+  background-color: #ddd;
+}
+
+#class td {
+  padding: 20px;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#class th {
+  padding: 20px;
+  text-align: center;
+  background-color: #66aaa2;
+  color: white;
+  font-size: 38px;
+}
+
+mat-icon {
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 12px;
+}

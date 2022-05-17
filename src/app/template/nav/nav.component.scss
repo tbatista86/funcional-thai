@@ -1,0 +1,56 @@
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidenav {
+  background-color: #66aaa2;
+  width: 200px;
+}
+
+.sidenav a {
+  color: #fff;
+}
+
+.sidenav i {
+  padding-right: 10px;
+}
+
+.logo {
+  width: 100%;
+}
+
+.menu-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #66aaa2;
+  color: #fff;
+  padding: 0 10px 2px 0;
+}
+
+.logout {
+  cursor: pointer;
+  span {
+    margin-right: 8px;
+  }
+
+  i {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+}
+
+.content {
+  padding: 20px;
+}
+
+mat-sidenav-content {
+  mat-icon {
+    cursor: pointer;
+    margin: 10px 0 0 10px;
+  }
+}

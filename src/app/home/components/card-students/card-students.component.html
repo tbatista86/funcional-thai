@@ -1,0 +1,10 @@
+<mat-card>
+  <h2>TOTAL DE ALUNOS</h2>
+  <a [routerLink]="['/students']">
+    <i class="material-icons icon">group</i>
+  </a>
+  <a [routerLink]="['/register-student']">
+    <i class="material-icons icon-add">add</i>
+  </a>
+  <span>{{ studentList?.length }}</span>
+</mat-card>

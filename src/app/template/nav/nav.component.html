@@ -1,0 +1,48 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" class="sidenav" [(opened)]="opened">
+    <img src="assets/logo.jpg" alt="logo" class="logo" />
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="/">
+        <i class="material-icons">home</i>Início
+      </a>
+      <a mat-list-item routerLink="/students">
+        <i class="material-icons">group</i>Alunos
+      </a>
+      <a mat-list-item routerLink="/class">
+        <i class="material-icons">class</i>Turmas
+      </a>
+
+      <a mat-list-item routerLink="/account">
+        <i class="material-icons">settings</i>Admin
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="menu-nav">
+      <div>
+        <mat-icon
+          *ngIf="!opened"
+          (click)="sidenav.toggle()"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          >menu</mat-icon
+        >
+        <mat-icon
+          *ngIf="opened"
+          (click)="sidenav.toggle()"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          >close</mat-icon
+        >
+      </div>
+
+      <div class="logout" (click)="logout()">
+        <i class="material-icons">logout</i>Sair
+      </div>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

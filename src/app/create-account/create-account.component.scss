@@ -1,0 +1,26 @@
+.center-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-card {
+    max-width: 400px;
+    margin: auto auto;
+    text-align: center;
+    padding: 20px;
+    box-shadow: none;
+
+    mat-form-field {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    button {
+      width: 100%;
+      margin: 20px 0;
+      text-transform: uppercase;
+      background-color: #63aaa2;
+    }
+  }
+}

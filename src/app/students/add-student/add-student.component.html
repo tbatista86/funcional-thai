@@ -1,0 +1,132 @@
+<div class="container" novalidate>
+  <form
+    [formGroup]="formGroup"
+    (ngSubmit)="onSubmit(formGroup.value)"
+    class="form"
+  >
+    <h2>Cadastro de Aluno</h2>
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Nome" formControlName="name" />
+      <mat-error *ngIf="!name.valid && name.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input
+        type="tel"
+        matInput
+        placeholder="Telefone"
+        formControlName="phone"
+        (blur)="formatPhoneNumber($any($event.target).value)"
+      />
+      <mat-error *ngIf="!phone.valid && phone.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Email" formControlName="email" />
+      <mat-error *ngIf="!email.valid && email.touched">
+        {{ getErrorEmail() }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input
+        matInput
+        placeholder="Cep"
+        formControlName="zipCode"
+        (blur)="consultaCEP($any($event.target).value)"
+      />
+      <mat-error *ngIf="!zipCode.valid && zipCode.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="street">
+      <mat-form-field class="form-element rua">
+        <input matInput placeholder="Rua" formControlName="street" />
+        <mat-error *ngIf="!street.valid && street.touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element numero">
+        <input
+          type="number"
+          matInput
+          placeholder="Número"
+          formControlName="number"
+        />
+        <mat-error *ngIf="!number.valid && number.touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Bairro" formControlName="district" />
+      <mat-error *ngIf="!district.valid && district.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="Cidade" formControlName="city" />
+      <mat-error *ngIf="!city.valid && city.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input matInput placeholder="UF" formControlName="uf" />
+      <mat-error *ngIf="!uf.valid && uf.touched">
+        {{ titleAlert }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <textarea
+        matInput
+        placeholder="Description"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form-element">
+      <input
+        type="number"
+        matInput
+        placeholder="Data de pagamento"
+        formControlName="paymentDay"
+        min="1"
+        max="31"
+      />
+      <mat-error *ngIf="!paymentDay.valid && paymentDay.touched">
+        {{ errorDayNumber() }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Data de Matrícula</mat-label>
+      <input formControlName="registration" matInput [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <input hidden formControlName="dueDate" type="date" />
+
+    <div class="form-element">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="button"
+        [disabled]="formGroup.invalid"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>

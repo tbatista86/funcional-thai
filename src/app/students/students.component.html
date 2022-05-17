@@ -1,0 +1,123 @@
+<div class="container">
+  <mat-form-field appearance="standard">
+    <mat-label>Pesquisa</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Nome" #input />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- DueDate Column -->
+    <ng-container matColumnDef="dueDate">
+      <th mat-header-cell *matHeaderCellDef>Vencimento</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngClass]="{ error: verifyDueDate(element.dueDate.toDate()) }"
+        mat-button
+        (click)="openDialog(element.dueDate.toDate(), element)"
+      >
+        {{ element.dueDate.toDate() | date: "dd/MM/Y" }}
+        <button
+          *ngIf="verifyDueDate(element.dueDate.toDate())"
+          mat-icon-button
+          color="warn"
+          aria-label="Example icon button with a home icon"
+        >
+          <mat-icon>error</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef class="visible">Telefone</th>
+      <td class="visible" mat-cell *matCellDef="let element">
+        {{ element.phone | phone }}
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let element">
+        <div>
+          <button
+            mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a home icon"
+            (click)="edit(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="warn"
+            aria-label="Example icon button with a home icon"
+            (click)="openDialogDelete(element)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        Sem resultados para "{{ input.value }}"
+      </td>
+    </tr>
+
+    <!-- Row shown when there is no matching data. -->
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+
+  <button class="fab" mat-fab color="primary" (click)="add()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<ng-template #modal>
+  <h2 mat-dialog-title>Aluno(a) com pagamento pendente</h2>
+  <mat-dialog-content class="mat-typography">
+    <h3>Deseja dar baixa no pagamento?</h3>
+
+    <p>
+      Ao dar baixa no pagamento o aluno(a) será liberado(a) para atividades.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="warn">
+      Baixar Pagamento
+    </button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #modalDelete>
+  <h2 mat-dialog-title>Excluir Aluno(a)</h2>
+  <mat-dialog-content class="mat-typography">
+    <h3>Deseja realmente excluir o aluno(a)?</h3>
+
+    <p>Ao excluir o aluno(a) não será possível restaurar o mesmo.</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="warn">
+      Excluir
+    </button>
+  </mat-dialog-actions>
+</ng-template>
